@@ -17,6 +17,11 @@ Acesse as documentações para instruções de como instalar em sua máquina, ou
 python3 -m virtualenv env
 ```
 
++ Ativar o ambiente virtual:
+```bash
+source env/bin/activate
+```
+
 + Instalar dependências:
 ```bash
 pip3 install -r requirements.txt
