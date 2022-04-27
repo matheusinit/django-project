@@ -1,0 +1,87 @@
+{% extends 'projeto/base.html' %}
+
+{% block page_title %}
+  Balancete detalhado
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <div class='card p-3'>
+        <h3 class='text-center fs-3'>
+          Balancete do mês
+        </h3>
+
+        <div class='card-body'>
+          <div class='row mb-5'>
+            <div class='col d-flex align-items-center flex-column'>
+              <div class='fs-4 fw-normal'>Mês referência</div>
+              <div class='fs-5 fw-light'>
+                {{ balancete.data | date:"m Y"}}
+              </div>
+            </div>
+
+            <div class='col d-flex align-items-center flex-column'>
+              <div class='fs-4 fw-normal'>Valor total</div>
+              <div class='fs-5 fw-light'>
+                R$ {{ valor_total | floatformat:2 }}
+              </div>
+            </div>
+          </div>
+
+          <div class='row d-flex justify-content-around'>
+            <div class='col-5'>
+              <div class='d-flex justify-content-between align-items-center mb-3'>
+                <span class='fs-4 fw-normal'>Receitas</span>
+                <span class='fs-5 fw-light'>
+                R$ {{ receitas_total | floatformat:2 }}
+                </span>
+              </div>
+
+              {% if receitas_count == 0 %}
+                <p class='text-center text-muted'>Nenhuma receita cadastrada.</p>
+              {% else %}
+                <div class='d-flex flex-column'>
+                  {% for receita in receitas_list %}
+                    <div class='d-flex pb-3'>
+                      <div class='col-6 fs-6'>{{ receita.titulo | title }}</div>
+                      <div class='col-6 text-end fs-6 fw-light'>
+                        R$ {{ receita.saldo | floatformat:2 }}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class='col-5'>
+              <div class='d-flex justify-content-between align-items-center mb-3'>
+                <span class='fs-4 fw-normal'>Despesas</span>
+                <span class='fs-5 fw-light'>
+                  R$ {{ despesas_total | floatformat:2 }}
+                </span>
+              </div>
+
+              {% if despesas_count == 0 %}
+                <p class='text-center text-muted'>Nenhuma despesa cadastrada</p>
+              {% else %}
+                <div class='d-flex flex-column'>
+                  {% for despesa in despesas_list %}
+                    <div class='d-flex pb-3'>
+                      <div class='col-6 fs-6'>{{ despesa.titulo | title }}</div>
+                      <div class='col-6 text-end fs-6 fw-light'>
+                        R$ {{ despesa.saldo | floatformat:2 }}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

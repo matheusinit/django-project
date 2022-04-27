@@ -1,0 +1,47 @@
+{% extends 'projeto/base.html' %}
+{% load static %}
+
+{% block page_title %}
+    Receitas
+{% endblock %}
+
+{% block content %}
+  <div class='container'>
+    <main>
+      <div class='container w-75'>
+      {% if receitas %}
+        <table class='table table-borderless'>
+          <thead>
+            <tr class='row pt-3 border-bottom'>
+              <th class="col-2">ID</th>
+              <th class="col-6">Título</th>
+              <th class="col">Saldo</th>
+            </tr>
+          </thead>
+
+          <tbody class='container'>
+            {% for receita in receitas %}
+              <tr class="row pt-3 border-bottom">
+                <td class="col-2 pt-0 pb-3">{{receita.id}}</td>
+                <td class="col-6 pt-0 pb-3">{{receita.titulo}}</td>
+                <td class="col pt-0 pb-3">{{receita.saldo}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+           <div class='d-flex justify-content-center align-items-center'>
+            <p>Nenhuma receita cadastrada.</p>
+           </div>
+        {% endif %}
+
+        <div class='d-flex justify-content-center pt-2'>
+          <a href="{% url "projeto:criar_receita" %}" role="button" class='btn btn-primary'>
+            Adicionar receita
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}
+

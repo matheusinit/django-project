@@ -1,0 +1,38 @@
+{% extends 'projeto/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class='container-fluid vh-100'>
+    <header>
+    </header>
+
+    <main class='mt-5'>
+      <div class='w-50 p-4 mx-auto shadow rounded-2 bg-white'>
+        <form action="{% url "projeto:cadastrar_usuario" %}" method="POST" class='container-fluid'>
+          {% csrf_token %}
+
+          <div class='row mb-3'>
+            <div class='col'>
+              <label for="nome">Nome</label>
+              <input type="text" class='form-control' name='nome' id="nome" />
+            </div>
+          </div>
+
+          <div class='row mb-3'>
+            <div class='col'>
+              <label for="senha">Senha</label>
+              <input type="password" class='form-control' name='senha' id="senha" />
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='col d-flex justify-content-end'>
+              <button class='btn btn-primary' type="submit">Cadastrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+{% endblock %}

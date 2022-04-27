@@ -1,0 +1,30 @@
+{% extends 'projeto/base.html' %}
+
+{% block page_title %}
+    Balancetes
+{% endblock %}
+
+{% block content %}
+  <main class='container'>
+    {% if balancetes %}
+    <ul class='list-group'>
+      {% for balancete in balancetes %}
+        <li class='list-group-item'>
+          <div class='d-flex align-items-center justify-content-between'>
+            <span class='fs-6'>
+              {{balancete.data | date:"m Y"}}
+            </span>
+
+            <span>
+              <a href="{% url "projeto:mostrar_balancete" id=balancete.id %}" class="btn btn-primary fw fs-6">Detalhes</a>
+            </span>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+        <span>Nenhum balancete cadastrado</span>
+    {% endif %}
+  </main>
+
+{% endblock %}

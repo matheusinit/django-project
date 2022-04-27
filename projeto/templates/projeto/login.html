@@ -1,0 +1,55 @@
+{% extends 'projeto/base.html' %}
+
+{% block page_title %}
+    Login
+{% endblock %}
+
+{% block content %}
+  <main>
+    <div class='container-fluid vh-100 pt-5'>
+      <div class='w-50 p-4 mx-auto shadow rounded-2 bg-white'>
+        {% if error_msg %}
+            <div class='d-flex justify-content-center align-items-center text-danger'>
+                {{ error_msg }}
+            </div>
+        {% endif %}
+
+        <form action="{% url "projeto:login_usuario" %}" method="POST" class='container-fluid'>
+          {% csrf_token %}
+
+          <div class='row mb-3'>
+            <div class='col'>
+              <label for="nome">Nome</label>
+              <input type="text" class='form-control' name="nome" id="nome" />
+            </div>
+          </div>
+
+          <div class='row mb-3'>
+            <div class='col'>
+              <label for="senha">Senha</label>
+              <input type="password" class='form-control' name="senha" id="senha" />
+            </div>
+          </div>
+
+          <div class='row mb-3'>
+            <!--<div class='col-6 d-flex align-items-center'>-->
+            <!--  <a class='link-primary' href="#">Esqueceu a senha?</a>-->
+            <!--</div>-->
+
+            <div class='col d-flex justify-content-end'>
+              <button class='btn btn-primary' type="submit">Login</button>
+            </div>
+          </div>
+
+          <div class='row mb-3'>
+            <div class='col d-flex justify-content-center'>
+              <a class='link-primary' href="cadastrar?next=/login">
+                Sem cadastro? Cadastre-se agora
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

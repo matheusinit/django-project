@@ -1,0 +1,51 @@
+{% extends 'projeto/base.html' %}
+{% load static %}
+
+{% block page_title %}
+    Despesas
+{% endblock %}
+
+{% block content%}
+  <div class='container'>
+    <main>
+      <div class='container w-75'>
+        {% if despesas %}
+        <table class='table table-borderless'>
+          <thead>
+            <tr class='row pt-3 border-bottom'>
+              <th class='col-2'>ID</th>
+              <th class='col-6'>Título</th>
+              <th class='col'>Saldo</th>
+            </tr>
+          </thead>
+
+          <tbody class='container'>
+            {% for despesa in despesas %}
+              <tr class='row pt-3 border-bottom'>
+                <td class='col-2 pt-0 pb-3'>{{despesa.id}}</td>
+                <td class='col-6 pt-0 pb-3'>{{despesa.titulo}}</td>
+                <td class='col pt-0 pb-3'>{{despesa.saldo}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+        <div class='d-flex justify-content-center align-items-center'>
+            <p>Nenhuma despesa cadastrada.</p>
+        </div>
+      {% endif %}
+
+      <div class='d-flex justify-content-center pt-4'>
+          <a href="{% url "projeto:criar_despesa" %}" role="button" class='btn btn-primary'>
+            Adicionar despesas
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}
+
+
+
